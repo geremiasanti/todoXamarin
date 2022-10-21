@@ -36,11 +36,13 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Posso stalkerarti?</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Posso stalkerarti?</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Posso stalkerarti</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
 	</array>
-	<key>NSLocationUsageDescription</key>
-	<string>Posso stalkerarti</string>
 </dict>
 </plist>
