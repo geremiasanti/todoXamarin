@@ -105,7 +105,9 @@ namespace todo.Views
                     return;
                 }
 
-                await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(1), 10, false, new Plugin.Geolocator.Abstractions.ListenerSettings
+                await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(1), 1);
+                /*
+                false, new Plugin.Geolocator.Abstractions.ListenerSettings
                 {
                     ActivityType = Plugin.Geolocator.Abstractions.ActivityType.AutomotiveNavigation,
                     AllowBackgroundUpdates = true,
@@ -115,6 +117,7 @@ namespace todo.Views
                     ListenForSignificantChanges = true,
                     PauseLocationUpdatesAutomatically = true
                 });
+                */
 
                 CrossGeolocator.Current.PositionChanged += Current_PositionChanged;
             }
