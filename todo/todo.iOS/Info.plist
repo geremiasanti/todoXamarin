@@ -38,8 +38,10 @@
 	<string>Posso stalkerarti?</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Posso stalkerarti?</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Posso stalkerarti?</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Posso stalkerarti</string>
+	<string>Posso stalkerarti?</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
