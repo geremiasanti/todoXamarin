@@ -8,6 +8,7 @@ using Xamarin.Forms.Xaml;
 using todo.Models;
 using todo.Services;
 using Xamarin.Essentials;
+using Plugin.Geolocator;
 
 namespace todo.Views
 {
@@ -86,6 +87,37 @@ namespace todo.Views
 
         async void OnLocationButtonClicked(object sender, EventArgs args)
         {
+            var permission = await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.LocationAlways>();
+            if (permission == Xamarin.Essentials.PermissionStatus.Denied)
+            {
+                Console.WriteLine("Permessi posizione IOS mancanti");
+                return;
+            }
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+
+                if (CrossGeolocator.Current.IsListening)
+                {
+                    await CrossGeolocator.Current.StopListeningAsync();
+                    CrossGeolocator.Current.PositionChanged -= Current_PositionChanged;
+
+                    return;
+                }
+
+                await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(1), 10, false, new Plugin.Geolocator.Abstractions.ListenerSettings
+                {
+                    ActivityType = Plugin.Geolocator.Abstractions.ActivityType.AutomotiveNavigation,
+                    AllowBackgroundUpdates = true,
+                    DeferLocationUpdates = false,
+                    DeferralDistanceMeters = 10,
+                    DeferralTime = TimeSpan.FromSeconds(5),
+                    ListenForSignificantChanges = true,
+                    PauseLocationUpdatesAutomatically = true
+                });
+
+                CrossGeolocator.Current.PositionChanged += Current_PositionChanged;
+            }
             if (Device.RuntimePlatform == Device.Android)
             {
                 if (Preferences.Get("LocationServiceRunning", false) == false)
@@ -113,6 +145,11 @@ namespace todo.Views
             MessagingCenter.Send(stopServiceMessage, "ServiceStopped");
             Preferences.Set("LocationServiceRunning", false);
             Console.WriteLine("Location Service has been stopped!");
+        }
+
+        private void Current_PositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
+        {
+            Console.WriteLine($"{e.Position.Latitude}, {e.Position.Longitude}, {e.Position.Timestamp.TimeOfDay}");
         }
     }
 }
