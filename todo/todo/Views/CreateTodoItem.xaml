@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="todo.Views.CreateTodoItem">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Start" Padding="5">
+            <Entry Placeholder="Titolalo!" x:Name="Entries_title"></Entry>
+            <Editor Placeholder="Descrivilo!" AutoSize="TextChanges" x:Name="Entries_description"></Editor>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Salvalo!" Clicked="OnSubmit" HorizontalOptions="Center"></Button>
+                <Button Text="Randomizzalo!" Clicked="OnRandomClicked" HorizontalOptions="End" x:Name="Api_button"></Button>
+                <ActivityIndicator IsRunning="True" IsVisible="false" x:Name="Api_loading"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

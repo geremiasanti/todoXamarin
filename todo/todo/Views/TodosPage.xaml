@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="todo.Views.TodosPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- Display notes in a list -->
+            <CollectionView x:Name="collectionView" Margin="20" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
+                <!-- SelectionChanged="OnSelectionChanged"> -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <!-- Define the appearance of each item in the list -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Title}"
+                                TextColor="Black"
+                                FontSize="Medium"/>
+                            <Label Text="{Binding Description}"
+                                FontSize="Small" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Login!"
+                    VerticalOptions="Fill"
+                    Clicked="OnLoginButtonClicked" />
+                <Button Text="+ Crealo!"
+                    VerticalOptions="Fill"
+                    Clicked="OnCreateButtonClicked" />
+                <Button Text="Stalkerami!"
+                    VerticalOptions="Fill"
+                    Clicked="OnLocationButtonClicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
