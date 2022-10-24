@@ -33,6 +33,9 @@
                 <Button Text="Stalkerami!"
                     VerticalOptions="Fill"
                     Clicked="OnLocationButtonClicked" />
+                <Button Text="Webview!"
+                    VerticalOptions="Fill"
+                    Clicked="OnWebviewButtonClicked" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

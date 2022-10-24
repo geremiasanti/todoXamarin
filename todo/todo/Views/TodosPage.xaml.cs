@@ -74,6 +74,11 @@ namespace todo.Views
             await Navigation.PushAsync(new CreateTodoItem());
         }
 
+        async void OnWebviewButtonClicked(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new Webview());
+        }
+
         async void OnLoginButtonClicked(object sender, EventArgs args)
         {
             string email = await DisplayPromptAsync("Inseriscilo!", "Inserisci la tua email!");
